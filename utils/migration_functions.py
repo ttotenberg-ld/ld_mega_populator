@@ -12,11 +12,9 @@ def write_new():
         # Intentional pause to simulate write latency
         time.sleep(.2)
         if value >= new_rate:
-            print("NEW WRITE: SUCCESS")
-            return Result.success("WRITE: SUCCESS")
+            return Result.success("Write: Success")
         else:
-            print("NEW WRITE: FAIL")
-            return Result.fail("WRITE: FAIL")
+            return Result.fail("Write: Fail")
     return randomizer
 
 def write_old():
@@ -26,11 +24,9 @@ def write_old():
         # Intentional pause to simulate write latency
         time.sleep(.35)
         if value >= old_rate:
-            print("OLD WRITE: SUCCESS")
-            return Result.success("WRITE: SUCCESS")
+            return Result.success("Write: Success")
         else:
-            print("OLD WRITE: FAIL")
-            return Result.fail("WRITE: FAIL")
+            return Result.fail("Write: Fail")
     return randomizer
 
 def read_new():
@@ -43,14 +39,11 @@ def read_new():
             # Add an additional check on succesful read to determine whether this will be consistent with the other read
             consistency_value = random.randint(1, 1000)
             if consistency_value <= 998:
-                print("NEW READ: CONSISTENT")
-                return Result.success("READ: CONSISTENT")
+                return Result.success("Read: Consistent")
             else: 
-                print("NEW READ: INCONSISTENT")
-                return Result.success("READ: INCONSISTENT")
+                return Result.success("Read: Inconsistent")
         else:
-            print("NEW READ: FAIL")
-            return Result.fail("READ: FAIL")
+            return Result.fail("Read: Fail")
     return randomizer
 
 def read_old():
@@ -63,22 +56,17 @@ def read_old():
             # Add an additional check on succesful read to determine whether this will be consistent with the other read
             consistency_value = random.randint(1, 1000)
             if consistency_value <= 998:
-                print("OLD READ: CONSISTENT")
-                return Result.success("READ: CONSISTENT")
+                return Result.success("Read: Consistent")
             else: 
-                print("OLD READ: INCONSISTENT")
-                return Result.success("READ: INCONSISTENT")
+                return Result.success("Read: Inconsistent")
         else:
-            print("OLD READ: FAIL")
-            return Result.fail("READ: FAIL")
+            return Result.fail("Read: Fail")
     return randomizer
 
 def consistency_check():
     def check_consistency(a, b):
         if a == b:
-            print("Consistency: TRUE")
             return True
         else:
-            print("Consistency: FALSE")
             return False
     return check_consistency

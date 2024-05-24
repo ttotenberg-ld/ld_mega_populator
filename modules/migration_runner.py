@@ -1,3 +1,4 @@
+from colorama import Fore, Style
 from dotenv import load_dotenv
 import json
 import ldclient
@@ -54,23 +55,26 @@ migrator = builder.build()
 '''
 Main loop to execute reads and writes
 '''
-while True:
-    context = create_multi_context()
+def run_migration():
+    while True:
+        print(Fore.RED + "*** Running migration ***")
+        print(Style.RESET_ALL)
+        context = create_multi_context()
 
-    # Out of 1000 reads, how many will fail
-    read_error_rates = {
-        "old": 30,
-        "new": 11
-        }
+        # Out of 1000 reads, how many will fail
+        read_error_rates = {
+            "old": 30,
+            "new": 11
+            }
 
-    # Out of 1000 writes, how many will fail
-    write_error_rates = {
-        "old": 20,
-        "new": 10
-        }
+        # Out of 1000 writes, how many will fail
+        write_error_rates = {
+            "old": 20,
+            "new": 10
+            }
 
-    read_result = migrator.read(FLAG_KEY, context, default_stage, read_error_rates)
+        read_result = migrator.read(FLAG_KEY, context, default_stage, read_error_rates)
 
-    write_result = migrator.write(FLAG_KEY, context, default_stage, write_error_rates)
+        write_result = migrator.write(FLAG_KEY, context, default_stage, write_error_rates)
 
-    time.sleep(10)
+        time.sleep(10)
