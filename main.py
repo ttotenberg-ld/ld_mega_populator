@@ -24,6 +24,10 @@ def show_banner():
 '''
 Create threads to run all population tools in parallel
 '''
+
+# TODO: Eliminate threading, and instead just loop through each function in sequence.
+# TODO: Add in RG detection
+# TODO: Add in application metadata
 multi_eval = threading.Thread(target=run_multi_eval)
 migration = threading.Thread(target=run_migration)
 rg = threading.Thread(target=run_rg)
